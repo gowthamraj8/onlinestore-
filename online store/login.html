@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        padding: 10px;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        width: 250px;
+      }
+
+      button[type="submit"] {
+        padding: 10px 20px;
+        background-color: #0077cc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .error {
+        color: red;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <script>
+    function validateForm() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+  
+      if (username.length < 5) {
+        alert('Username must be at least 5 characters long');
+        return false;
+      }
+  
+      if (password.length < 8) {
+        alert('Password must be at least 8 characters long');
+        return false;
+      }
+  
+      return true;
+    }
+  </script>
+  
+
+  <script>
+    const form = document.querySelector('form');
+    const error = document.querySelector('.error');
+    const message = document.querySelector('#message');
+  
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+  
+      const username = form.elements.username.value;
+      const password = form.elements.password.value;
+  
+      if (username === 'myusername' && password === 'mypassword') {
+        error.textContent = '';
+        message.textContent = 'You have been logged in';
+        
+        window.location.href = 'index.html';
+      } else {
+        error.textContent = 'Incorrect username or password';
+      }
+    });
+  </script>
+  
+  
+  
+  <body>
+    <h1>Welcome to Evenlane</h1>
+    <p class="error"></p>
+    <form method="post">
+      <div id="message"></div>
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <p><a href="forgot_password.html">Forgot Password?</a></p>
+      <p><a href="create_account.html">Create Account</a></p>
+      <form method="post" onsubmit="return validateForm()">
+      <div>
+        <label for="remember-me">Remember Me:</label>
+        <input type="checkbox" id="remember-me" name="remember-me">
+      </div>      
+      <div>
+        <button type="submit">Login</button>
+      </div>
+    </form>
+  </body>
+</html>
